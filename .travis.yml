@@ -15,6 +15,6 @@ deploy:
   on:
 #    repo: neueda/jetbrains-plugin-graph-database-support
     branch: master
-    tags: true
+#    tags: true
 script:
   - ./gradlew clean test --stacktrace
