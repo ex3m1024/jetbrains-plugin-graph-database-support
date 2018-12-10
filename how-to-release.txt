@@ -1,23 +1,40 @@
-Release should be done manually & carefully.
+Release should be done carefully.
 
 Be sure to check that plugin works before releasing!
 To be executed straight on neueda/jetbrains-plugin-graph-database-support repository master branch.
 
+One-time preparation:
+
+    Go to travis-ci.org, go to settings for neueda/jetbrains-plugin-graph-database-support,
+    enter and save these (names are self explanatory) environment variables:
+    - INTELLIJ_USERNAME
+    - INTELLIJ_PASSWORD
+    Use credentials from Neueda robot account. The plugin will get published in the Jetbrains Plugin Repository
+
 Commands:
 
-1) Push new release tag to github
-./gradlew release
+    1) Push new release tag to github
+    ./gradlew release
+    The latest commit contains the next version, the previous one contains the state of the project
+    that is being released right now
 
-2) Checkout new release tag locally
-git checkout <new-release-tag>
+    1.1) After this step, wait for Travis to finish the build, and check if the plugin is
+    published in the Jetbrains Plugin Repository.
 
-3) Clean everything
-./gradlew clean
+    1.2) Go to GitHub, find latest released tag, edit comments, click 'publish', so that the release also appears on GitHub
 
-4) Publish plugin to Jetbrains Plugin Registry
-Ensure {HOME}/.gradle/gradle.properties file contains intellij credentials
-intellijUsername=
-intellijPassword=
-Execute
-./gradlew buildPlugin
-./gradlew :graph-database-support-plugin:publishPlugin
+If for some reason auto-publishing failed but projects , try manually:
+
+    2.1) Checkout new release tag locally
+    git checkout <new-release-tag>
+
+    2.2) Clean everything
+    ./gradlew clean
+
+    2.3) Publish plugin to Jetbrains Plugin Registry
+    Ensure {HOME}/.gradle/gradle.properties file contains intellij credentials
+    intellijUsername=
+    intellijPassword=
+    Execute
+    ./gradlew buildPlugin
+    ./gradlew :graph-database-support-plugin:publishPlugin
