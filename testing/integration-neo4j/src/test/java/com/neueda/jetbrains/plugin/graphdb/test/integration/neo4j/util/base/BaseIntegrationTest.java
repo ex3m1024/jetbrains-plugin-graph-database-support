@@ -10,10 +10,7 @@ import com.neueda.jetbrains.plugin.graphdb.jetbrains.component.datasource.state.
 import com.neueda.jetbrains.plugin.graphdb.language.cypher.completion.metadata.CypherMetadataContainer;
 import com.neueda.jetbrains.plugin.graphdb.language.cypher.completion.metadata.CypherMetadataProviderService;
 import com.neueda.jetbrains.plugin.graphdb.test.database.neo4j.common.Neo4jServer;
-import com.neueda.jetbrains.plugin.graphdb.test.integration.neo4j.util.server.Neo4j30ServerLoader;
-import com.neueda.jetbrains.plugin.graphdb.test.integration.neo4j.util.server.Neo4j31ServerLoader;
-import com.neueda.jetbrains.plugin.graphdb.test.integration.neo4j.util.server.Neo4j32ServerLoader;
-import com.neueda.jetbrains.plugin.graphdb.test.integration.neo4j.util.server.Neo4j33ServerLoader;
+import com.neueda.jetbrains.plugin.graphdb.test.integration.neo4j.util.server.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +23,8 @@ public abstract class BaseIntegrationTest extends LightCodeInsightFixtureTestCas
     private static final String NEO4J31 = "neo4j31";
     private static final String NEO4J32 = "neo4j32";
     private static final String NEO4J33 = "neo4j33";
+    private static final String NEO4J34 = "neo4j34";
+    private static final String NEO4J35 = "neo4j35";
     private static final String UNAVAILABLE_DS = "unavailable";
 
     private Components components;
@@ -105,6 +104,8 @@ public abstract class BaseIntegrationTest extends LightCodeInsightFixtureTestCas
         private DataSourceApi neo4j31DataSource;
         private DataSourceApi neo4j32DataSource;
         private DataSourceApi neo4j33DataSource;
+        private DataSourceApi neo4j34DataSource;
+        private DataSourceApi neo4j35DataSource;
         private DataSourceApi unavailableDataSource;
 
         public DataSourceApi neo4j30() {
@@ -133,6 +134,20 @@ public abstract class BaseIntegrationTest extends LightCodeInsightFixtureTestCas
                 neo4j33DataSource = getNeo4jDataSource(NEO4J33, Neo4j33ServerLoader.getInstance());
             }
             return neo4j33DataSource;
+        }
+
+        public DataSourceApi neo4j34() {
+            if (neo4j34DataSource == null) {
+                neo4j34DataSource = getNeo4jDataSource(NEO4J34, Neo4j34ServerLoader.getInstance());
+            }
+            return neo4j34DataSource;
+        }
+
+        public DataSourceApi neo4j35() {
+            if (neo4j35DataSource == null) {
+                neo4j35DataSource = getNeo4jDataSource(NEO4J35, Neo4j35ServerLoader.getInstance());
+            }
+            return neo4j35DataSource;
         }
 
         public DataSourceApi unavailable() {
